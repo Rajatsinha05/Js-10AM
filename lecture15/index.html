@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="student">
+      <input type="text" placeholder="name" id="name" />
+      <input type="number" id="number" placeholder="number" />
+      <input type="number" id="marks" placeholder="marks" />
+      <input type="text" id="course" placeholder="course" />
+      <input type="submit" value="Add" />
+    </form>
+
+    <hr />
+
+    <table border="1px splid black" cellspacing="10px" cellpadding="10px">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Number</th>
+          <th>Course</th>
+          <th>Marks</th>
+          <th>Result</th>
+          <th id="delete">Delete All</th>
+        </tr>
+      </thead>
+      <tbody id="data"></tbody>
+    </table>
+
+    <div id="box"></div>
+  </body>
+
+  <script src="./index.js"></script>
+</html>

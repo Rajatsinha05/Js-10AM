@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #data div img{
+            height: 200px;
+            width: 200px;
+        }
+        #data{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+        }
+        .title{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+
+        <input type="text" placeholder="title" id="title"  required>
+        <span id="t-error"></span>
+       <br>
+       
+        <input type="url" id="img" placeholder="img" required>
+        <br>
+        <input type="number" id="price" placeholder="price" required>
+        <br>
+        <input type="text" placeholder="password" id="password">
+    <br/>
+        <input type="submit">
+    </form>
+    <hr>
+
+    <div id="data">
+
+    </div>
+</body>
+
+<script src="./index.js"></script>
+</html>

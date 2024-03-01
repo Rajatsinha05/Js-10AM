@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form">
+      <input type="text" id="name" />
+      <input type="submit" />
+    </form>
+    <div id="box"></div>
+  </body>
+  <script>
+    const handleUser = (e) => {
+      e.preventDefault();
+      let name = document.getElementById("name").value;
+      let h1 = document.createElement("p");
+      h1.innerHTML = name;
+
+      document.getElementById("box").append(h1);
+    };
+    document.getElementById("form").addEventListener("submit", handleUser);
+  </script>
+</html>
