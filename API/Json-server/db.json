@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": "7f6a",
+      "title": "laptop",
+      "price": "456",
+      "img": "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+    },
+    {
+      "id": "b2c3",
+      "title": "mobile",
+      "price": "5",
+      "img": "https://images-cdn.ubuy.co.in/63e01ff71c49c075c057c9b3-shirts-men-korean-clothing-long-sleeve.jpg"
+    },
+    {
+      "id": "e886",
+      "title": "shirt",
+      "price": "4533",
+      "img": "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/09/instagram-image-size.jpg"
+    },
+    {
+      "id": "8565",
+      "title": "test",
+      "price": "435",
+      "img": "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/09/instagram-image-size.jpg"
+    }
+  ]
+}
