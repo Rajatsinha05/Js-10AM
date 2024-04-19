@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "052d",
+      "username": "node",
+      "email": "node@gmail.com",
+      "password": "node"
+    },
+    {
+      "id": "2dee",
+      "username": "harshil",
+      "email": "node1@gmail.com",
+      "password": "node"
+    }
+  ],
+  "products": [
+    {
+      "id": "86b9",
+      "title": "mobile",
+      "price": "435",
+      "category": "fghfg",
+      "img": "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+    }
+  ]
+}
