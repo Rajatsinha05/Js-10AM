@@ -6,5 +6,4 @@ const dbConnect = async () => {
     await mongoose.connect(url)
     console.log("Connected to MongoDB");
 }
-
 module.exports = dbConnect
