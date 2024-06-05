@@ -8,9 +8,21 @@ const getUsers = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    let data = await User.create(req.body)
-    res.send(data)
+    let { email } = req.body;
+
+    let user = await User.findOne({ email: email })
+
+    if (user) {
+        res.send({ msg: "User already exists", user })
+    }
+    else {
+
+        let data = await User.create(req.body)
+        res.send(data)
+    }
+
 }
+
 
 const updateUser = async (req, res) => {
     let { id } = req.params
@@ -29,7 +41,7 @@ const deleteUser = async (req, res) => {
 
 
 const loginPage = (req, res) => {
-    res.render('login',{title: "testing"})
+    res.render('login', { title: "testing" })
 }
 const singupPage = (req, res) => {
 

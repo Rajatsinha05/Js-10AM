@@ -10,11 +10,13 @@ let port = process.env.PORT || 8080
 //  ejs setup
 app.set("view engine", "ejs")
 app.set("views", __dirname + "/view")
+app.use(express.static("public"))
 
 
 
-
-
+app.get("/", (req, res) => {
+    res.render("index")
+})
 
 app.use("/user", userRoute)
 app.listen(port, () => {
