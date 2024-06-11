@@ -50,14 +50,7 @@
       <!-- Login box.scss -->
       <!-- ============================================================== -->
       <div
-        class="
-          auth-wrapper
-          d-flex
-          no-block
-          justify-content-center
-          align-items-center
-          bg-dark
-        "
+        class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark"
       >
         <div class="auth-box bg-dark border-top border-secondary">
           <div id="loginform">
@@ -70,7 +63,8 @@
             <form
               class="form-horizontal mt-3"
               id="loginform"
-              action="index.html"
+              action="/user/login"
+              method="post"
             >
               <div class="row pb-4">
                 <div class="col-12">
@@ -85,10 +79,11 @@
                     <input
                       type="text"
                       class="form-control form-control-lg"
-                      placeholder="Username"
+                      placeholder="Email Address"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
-                      required=""
+                      name="email"
+                      required
                     />
                   </div>
                   <div class="input-group mb-3">
@@ -104,6 +99,7 @@
                       class="form-control form-control-lg"
                       placeholder="Password"
                       aria-label="Password"
+                      name="password"
                       aria-describedby="basic-addon1"
                       required=""
                     />

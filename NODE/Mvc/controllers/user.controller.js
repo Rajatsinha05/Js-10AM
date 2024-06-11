@@ -8,10 +8,11 @@ const getUsers = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
+
+    console.log("createUser", req.body, req.file);
+
     let { email } = req.body;
-
     let user = await User.findOne({ email: email })
-
     if (user) {
         res.send({ msg: "User already exists", user })
     }
@@ -38,13 +39,27 @@ const deleteUser = async (req, res) => {
 
 }
 
-
-
 const loginPage = (req, res) => {
     res.render('login', { title: "testing" })
 }
 const singupPage = (req, res) => {
 
-    res.render("signup")
+    res.render("form")
 }
-module.exports = { getUsers, createUser, updateUser, deleteUser, get, singupPage, loginPage }
+
+const Login = async (req, res) => {
+    let { email, password } = req.body
+    let user = await User.findOne({ email: email })
+    if (user) {
+        if (user.password !== password) {
+            res.send("wrong password")
+        }
+        else {
+            res.send("success logged")
+        }
+    }
+    else {
+        res.status(404).send("user not found")
+    }
+}
+module.exports = { getUsers, createUser, updateUser, deleteUser, get, singupPage, loginPage, Login }
