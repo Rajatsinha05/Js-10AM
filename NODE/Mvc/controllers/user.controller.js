@@ -9,14 +9,17 @@ const getUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
 
-    console.log("createUser", req.body, req.file);
-
     let { email } = req.body;
     let user = await User.findOne({ email: email })
     if (user) {
         res.send({ msg: "User already exists", user })
     }
     else {
+
+
+        if (req.file) {
+            req.body.img = req.file.path
+        }
 
         let data = await User.create(req.body)
         res.send(data)
