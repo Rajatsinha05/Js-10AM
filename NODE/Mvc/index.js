@@ -1,10 +1,13 @@
 const express = require('express');
 const dbConnect = require('./config/db');
 const userRoute = require('./Routes/user.route');
+const cookie= require('cookie-parser');
 const app = express()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 require("dotenv").config()
+
+app.use(cookie())
 let port = process.env.PORT || 8080
 const path =require("path");
 const productRoute = require('./Routes/Product.route');

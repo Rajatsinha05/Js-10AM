@@ -4,6 +4,8 @@ const { get, getUsers, createUser, deleteUser, updateUser, singupPage, loginPage
 const isValid = require('../middlewares/dataValid')
 const multer = require('multer')
 const upload = require('../middlewares/uploadImage')
+const { isLoggedIn } = require('../middlewares/user')
+
 
 // multer
 // const storage =  multer.diskStorage({
@@ -22,7 +24,7 @@ const upload = require('../middlewares/uploadImage')
 
 let userRoute = Router()
 userRoute.get('/test', get)
-userRoute.get('/', getUsers)
+userRoute.get('/',isLoggedIn, getUsers)
 userRoute.post('/', upload.single("profile"), createUser)
 userRoute.delete('/:id', deleteUser)
 userRoute.patch("/:id", updateUser)
