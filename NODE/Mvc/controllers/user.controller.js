@@ -1,4 +1,6 @@
 const User = require("../models/User.model");
+const bcrypt = require("bcrypt");
+
 const get = (req, res) => {
     res.send("welcome");
 }
@@ -7,7 +9,12 @@ const getUsers = async (req, res) => {
     res.send(data)
 }
 const createUser = async (req, res) => {
-    let { email } = req.body;
+    let { email, password } = req.body;
+    let hashPassword = await bcrypt.hash(password, 10)
+    req.body.password = hashPassword
+
+
+
     let user = await User.findOne({ email: email })
     if (user) {
         res.send({ msg: "User already exists", user })
@@ -44,7 +51,11 @@ const Login = async (req, res) => {
     let { email, password } = req.body
     let user = await User.findOne({ email: email })
     if (user) {
-        if (user.password !== password) {
+        // if (user.password !== password) {
+        //     res.send("wrong password")
+        // }
+        let isMatch = await bcrypt.compare(password, user.password)
+        if (!isMatch) {
             res.send("wrong password")
         }
         else {
