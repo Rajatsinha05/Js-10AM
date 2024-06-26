@@ -1,5 +1,7 @@
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
+const MailService = require("../service/mailService");
+const { response } = require("express");
 
 const get = (req, res) => {
     res.send("welcome");
@@ -70,4 +72,18 @@ const Login = async (req, res) => {
     }
 }
 
-module.exports = { getUsers, createUser, updateUser, deleteUser, get, singupPage, loginPage, Login }
+
+
+
+
+// mail 
+const sendMail = (req, res) => {
+    let { email } = req.body
+    let otp = Math.round(Math.random() * 10000)
+    MailService(email, otp)
+
+    res.send("sending mail...")
+}
+
+
+module.exports = { getUsers, createUser, updateUser, deleteUser, get, singupPage, loginPage, Login, sendMail }

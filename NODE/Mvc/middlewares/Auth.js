@@ -4,11 +4,10 @@ const localStrategy = require('passport-local').Strategy
 
 const intializer = (passport) => {
 
-    passport.use(new localStrategy({ usernameFiled: "email" }, async (email, password, done) => {
-
+    passport.use(new localStrategy({ usernameField: 'email' }, async (email, password, done) => {
+     console.log("Email , password" , email , password);
         let user = await User.findOne({ email: email })
         try {
-
             if (!user) {
                 return done(null, false);
             }
@@ -23,6 +22,7 @@ const intializer = (passport) => {
         }
 
     }))
+
     passport.serializeUser((user, done) => {
 
         return done(null, user.id);
@@ -33,3 +33,6 @@ const intializer = (passport) => {
     })
 
 }
+
+
+module.exports =intializer

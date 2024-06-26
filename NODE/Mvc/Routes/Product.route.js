@@ -3,13 +3,13 @@ const { createPage, createProduct, getProducts, getProductsPage, deleteProduct }
 const upload = require('../middlewares/uploadImage')
 const { isLoggedIn, isAdmin } = require('../middlewares/user')
 
-const productRoute=Router()
-productRoute.get('/create',isAdmin,createPage)
-productRoute.post('/',isAdmin,upload.single("img"),createProduct)
+const productRoute = Router()
+productRoute.get('/create', isAdmin, createPage)
+productRoute.post('/', isAdmin, upload.single("img"), createProduct)
 
-productRoute.get('/',isLoggedIn,getProducts)
-productRoute.get("/page",isLoggedIn,getProductsPage)
+productRoute.get('/', isLoggedIn, getProducts)
+productRoute.get("/page", isLoggedIn, getProductsPage)
 
-productRoute.get("/:id",isAdmin,deleteProduct)
+productRoute.get("/:id", isAdmin, deleteProduct)
 
-module.exports =productRoute
+module.exports = productRoute
