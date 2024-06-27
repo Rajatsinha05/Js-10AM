@@ -85,5 +85,50 @@ const sendMail = (req, res) => {
     res.send("sending mail...")
 }
 
+// password reset by old password
+const passwordReset = async (req, res) => {
+    let { oldPassword, newPassword } = req.body
+    let isMatch = await bcrypt.compare(oldPassword, req.user.password)
+    if (isMatch) {
+        let hashPassword = await bcrypt.hash(newPassword, 10)
+        let user = await User.findByIdAndUpdate(req.user.id, { password: hashPassword })
+        res.send(user)
+    }
+    else {
+        res.send("Invalid password")
+    }
+}
 
-module.exports = { getUsers, createUser, updateUser, deleteUser, get, singupPage, loginPage, Login, sendMail }
+const passwordPage = (req, res) => {
+
+    res.render("passwordreset")
+}
+
+
+
+
+// otp send by email
+let map=new Map()
+
+let userOtp={}
+const sendOtpByEmail = async (req, res) => {
+    let { email } = req.body
+
+    let user = await User.findOne({ email: email })
+
+    if (user) {
+        let otp = Math.round(Math.random() * 10000)
+        map.set(user.email, otp)
+        userOtp.user.email = otp
+        MailService(user.email, otp)
+        res.send("Success message sent to " + email)
+
+    }
+    else {
+        res.send("user not found for email address ")
+    }
+
+}
+
+module.exports = { getUsers, createUser, updateUser, deleteUser, get, singupPage, loginPage, Login, sendMail, passwordReset, passwordPage }
+

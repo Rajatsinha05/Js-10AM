@@ -1,6 +1,6 @@
 
 const { Router } = require('express')
-const { get, getUsers, createUser, deleteUser, updateUser, singupPage, loginPage, Login, sendMail } = require("../controllers/user.controller")
+const { get, getUsers, createUser, deleteUser, updateUser, singupPage, loginPage, Login, sendMail, passwordReset, passwordPage } = require("../controllers/user.controller")
 const isValid = require('../middlewares/dataValid')
 const multer = require('multer')
 const upload = require('../middlewares/uploadImage')
@@ -43,6 +43,10 @@ userRoute.get('/details',isLogged, (req, res) => {
 // mail
 userRoute.post('/mail',sendMail)
 
+
+// reset password
+userRoute.post('/password-reset',isLogged,passwordReset)
+userRoute.get("/password-reset",isLogged,passwordPage)
 
 
 module.exports = userRoute
