@@ -5,7 +5,10 @@ const ProductSchema = new mongoose.Schema({
     price: Number,
     img: String,
     category: String,
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    
 })
+
 
 const Product = mongoose.model("Product", ProductSchema);
 

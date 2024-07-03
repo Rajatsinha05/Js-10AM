@@ -2,14 +2,15 @@ const { Router } = require('express')
 const { createPage, createProduct, getProducts, getProductsPage, deleteProduct } = require('../controllers/Prodcut.controller')
 const upload = require('../middlewares/uploadImage')
 const { isLoggedIn, isAdmin } = require('../middlewares/user')
+const { Admin, isLogged } = require('../middlewares/validateUser')
 
 const productRoute = Router()
-productRoute.get('/create', isAdmin, createPage)
-productRoute.post('/', isAdmin, upload.single("img"), createProduct)
+productRoute.get('/create', isLogged,Admin, createPage)
+productRoute.post('/', isLogged,Admin, upload.single("img"), createProduct)
 
-productRoute.get('/', isLoggedIn, getProducts)
-productRoute.get("/page", isLoggedIn, getProductsPage)
+productRoute.get('/', isLogged, getProducts)
+productRoute.get("/page", isLogged, getProductsPage)
 
-productRoute.get("/:id", isAdmin, deleteProduct)
+productRoute.get("/:id", isLogged,Admin, deleteProduct)
 
 module.exports = productRoute

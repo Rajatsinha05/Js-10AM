@@ -108,9 +108,9 @@ const passwordPage = (req, res) => {
 
 
 // otp send by email
-let map=new Map()
+let map = new Map()
 
-let userOtp={}
+// let userOtp={}
 const sendOtpByEmail = async (req, res) => {
     let { email } = req.body
 
@@ -118,10 +118,12 @@ const sendOtpByEmail = async (req, res) => {
 
     if (user) {
         let otp = Math.round(Math.random() * 10000)
-        map.set(user.email, otp)
-        userOtp.user.email = otp
+        map.set(user.id, otp)
+        // userOtp.user.email = otp
         MailService(user.email, otp)
-        res.send("Success message sent to " + email)
+        res.cookie("id", user.id)
+        res.redirect("/user/verify")
+        console.log(map);
 
     }
     else {
@@ -130,5 +132,32 @@ const sendOtpByEmail = async (req, res) => {
 
 }
 
-module.exports = { getUsers, createUser, updateUser, deleteUser, get, singupPage, loginPage, Login, sendMail, passwordReset, passwordPage }
+
+// verify otp and reset password
+
+const verifyOtp = async (req, res) => {
+    let { otp, password } = req.body
+    let { id } = req.cookies
+    if (map.get(id) == otp) {
+        let hashPassword = await bcrypt.hash(password, 10)
+        let user = await User.findByIdAndUpdate(id, { password: hashPassword })
+
+        res.send(user)
+
+    }
+    else {
+        res.send("otp wrong ")
+    }
+
+}
+
+// otp and verify page
+const sendMailPage = (req, res) => {
+    res.render("sendMail")
+}
+
+const verifyPage = (req, res) => {
+    res.render("verifyOtp")
+}
+module.exports = { getUsers, createUser, updateUser, deleteUser, get, singupPage, loginPage, Login, sendMail, passwordReset, passwordPage, sendOtpByEmail, sendMailPage, verifyPage, verifyOtp }
 

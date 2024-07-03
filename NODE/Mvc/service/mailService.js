@@ -7,7 +7,7 @@ const MailService = (email, otp) => {
         service: "gmail",
         auth: {
             user: "harshad2043@gmail.com",
-            pass: ""
+            pass: "tuhuzyurvhtqaaph"
         }
     })
 

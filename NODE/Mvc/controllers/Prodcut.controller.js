@@ -4,6 +4,7 @@ const createProduct = async (req, res) => {
     if (req.file) {
         req.body.img = req.file.path
     }
+    req.body.userId = req.user.id
     let product = await Product.create(req.body)
     res.redirect("/product/page")
 }
@@ -14,7 +15,7 @@ const createPage = (req, res) => {
 }
 // products
 const getProducts = async (req, res) => {
-    let products = await Product.find()
+    let products = await Product.find().populate("userId")
     res.send(products)
 }
 // products page
